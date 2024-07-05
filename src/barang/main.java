@@ -8,12 +8,24 @@ package barang;
  *
  * @author User
  */
-
+import penyuplai.*;
 import CRUD.database;
+import gui.framaUtama;
+
+
 
 public class main {
     public static void main(String[] args) {
-        database dbconnect = new database();
+      new framaUtama().setVisible(true);
+      
+
+
+
+
+
+
+
+// database dbconnect = new database();
     
   
 //table uji
@@ -41,19 +53,19 @@ public class main {
 
 
 
-// Tabel pemasok
+ //Tabel pemasok
 //dbconnect.simpanpemasok("221", "udin","handil","08776564331");
-//dbconnect.ubahpemasok("220", "adul","semangat dalam","087876543526");
+//dbconnect.ubahpemasok("228", "adul","semangat","087876543526");
 //dbconnect.hapuspemasok("221");
 //dbconnect.caripemasok("221");
 //dbconnect.datapemasok();
 
 
 // Tabel penyuplai
-//dbconnect.simpanpenyuplai("1", "21-juni-2024","220");
-//dbconnect.ubahpenyuplai("2", "25-juni-2024","220");
+//dbconnect.simpanpenyuplai("1", "19-juni-2024","220");
+//dbconnect.ubahpenyuplai("1", "20-juni-2024","220");
 //dbconnect.hapuspenyuplai("1");
-//dbconnect.caripenyuplai("2");
+//dbconnect.caripenyuplai("1");
 //dbconnect.datapenyuplai();
     }
 }

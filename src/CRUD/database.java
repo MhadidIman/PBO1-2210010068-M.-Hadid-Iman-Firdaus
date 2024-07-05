@@ -32,7 +32,7 @@ public class database {
    }
    public void simpanuji(String nik, String nama, String telp, String alamat){
      try{
-         String sql = "insert into uji ( nik, nama, telp, Alamat)value (?,?,?)";
+         String sql = "insert into uji ( nik, nama, telp, Alamat)value (?,?,?,?)";
          PreparedStatement perintah = ConnectionDB.prepareStatement(sql);
          perintah.setString(1, nik);
          perintah.setString(2, nama);
@@ -208,7 +208,7 @@ public class database {
    }
       public void ubahBarang(String kode_barang, String nama_Barang, String satuan){
      try{
-         String sql = "Update barang set kode_barang = ?, nama_Barang =?,satuan =?";
+         String sql = "Update barang set nama_Barang =?,satuan =? where kode_barang = ?";
          PreparedStatement perintah = ConnectionDB.prepareStatement(sql);
          perintah.setString(1, nama_Barang);
          perintah.setString(2, satuan);
@@ -268,12 +268,12 @@ public class database {
          }
      }
      //barang penyuplai
-        public void simpanpenyuplai(String no_suplai, String tgl_suplai, String id_pemasok) {
+        public void simpanpenyuplai(String no_suplai, String tgl_masuk, String id_pemasok) {
      try{
-         String sql = "insert into penyuplai (no_suplai, tgl_suplai, id_pemasok)value (?,?,?)";
+         String sql = "insert into penyuplai (no_suplai, tgl_masuk, id_pemasok)value (?,?,?)";
          PreparedStatement perintah = ConnectionDB.prepareStatement(sql);
          perintah.setString(1, no_suplai);
-         perintah.setString(2, tgl_suplai);
+         perintah.setString(2, tgl_masuk);
          perintah.setString(3, id_pemasok);
          
          
@@ -285,13 +285,14 @@ public class database {
          System.out.println(e.getMessage());
      }
    }
-      public void ubahpenyuplai(String no_suplai , String tgl_suplai, String id_pemasok){
+      public void ubahpenyuplai(String no_suplai, String tgl_masuk, String id_pemasok){
      try{
-         String sql = "Update penyuplai set no_suplai = ?, tgl_suplai =?, id_pemasok = ? where jumlah = ?, keterangan =?";
+         String sql = "Update penyuplai set tgl_masuk = ?, id_pemasok =? where no_suplai ";
          PreparedStatement perintah = ConnectionDB.prepareStatement(sql);
-         perintah.setString(1, no_suplai);
-         perintah.setString(2, tgl_suplai);
-         perintah.setString(3, id_pemasok);
+         
+         perintah.setString(1, tgl_masuk);
+         perintah.setString(2, id_pemasok);
+         perintah.setString(3, no_suplai);
          
          perintah.executeUpdate(); 
              System.out.println("data berhasil diubah");
@@ -322,7 +323,7 @@ public class database {
        ResultSet data = perintah.executeQuery();
        while (data.next()) {
            System.out.println("NoSuplai: "+data.getString("no_suplai"));
-           System.out.println("TglSuplai:"+data.getString("tgl_suplai"));
+           System.out.println("tglmasuk:"+data.getString("tgl_masuk"));
            System.out.println("IdPemasok: "+data.getString("id_pemasok"));
            
         }
@@ -336,7 +337,7 @@ public class database {
              ResultSet baris = stmt.executeQuery("select*from penyuplai order by no_suplai");
              while(baris.next()){
                  System.out.println(baris.getString("no_suplai")+"|"+
-                         baris.getString("tgl_suplai")+"|"+
+                         baris.getString("tgl_masuk")+"|"+
                          baris.getString("id_pemasok"));
                     
              }
@@ -348,7 +349,7 @@ public class database {
 //pemasok
            public void simpanpemasok(String id_pemasok, String nama, String alamat, String telp){
      try{
-         String sql = "insert into pemasok ( id_pemasok, nama, alamat, telp )value (?,?,?)";
+         String sql = "insert into pemasok ( id_pemasok, nama, alamat, telp )value (?,?,?,?)";
          PreparedStatement perintah = ConnectionDB.prepareStatement(sql);
          perintah.setString(1, id_pemasok);
          perintah.setString(2, nama);
@@ -366,12 +367,12 @@ public class database {
    }
       public void ubahpemasok(String id_pemasok, String nama, String alamat, String telp){
      try{
-         String sql = "Update pemasok set id_ pemasok= ?, nama = ?, alamat = ? where telp = ?";
+         String sql = "Update pemasok set nama = ?, alamat = ?, telp = ? where id_pemasok = ?";
          PreparedStatement perintah = ConnectionDB.prepareStatement(sql);
-         perintah.setString(1, id_pemasok);
-         perintah.setString(2, nama);
-         perintah.setString(3, alamat);
-         perintah.setString(4, telp);
+         perintah.setString(1, nama);
+         perintah.setString(2, alamat);
+         perintah.setString(3, telp);
+         perintah.setString(4, id_pemasok);
         
          
          perintah.executeUpdate(); 
